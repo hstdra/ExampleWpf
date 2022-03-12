@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using WpfApp.Helpers;
 using WpfApp.Models;
 using WpfApp.Stores;
 
@@ -12,16 +14,16 @@ public interface IProductService
 
 public class ProductService : IProductService
 {
-    private readonly Store _store;
+    private readonly ProductStore _productStore;
 
-    public ProductService(Store store)
+    public ProductService(ProductStore productStore)
     {
-        _store = store;
+        _productStore = productStore;
     }
 
     public void LoadProducts()
     {
-        _store.Products ??= new ObservableCollection<Product>();
-        _store.Products.Add(new() {Name = $"Product {Random.Shared.Next()}", Price = Random.Shared.Next()});
+        _productStore.Products ??= new ObservableCollection<Product>();
+        _productStore.Products.Add(new() {Name = $"Product {Random.Shared.Next()}", Price = Random.Shared.Next()});
     }
 }

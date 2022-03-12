@@ -11,6 +11,8 @@
     <ItemGroup>
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
         <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
+        <PackageReference Include="Binaron.Serializer" Version="4.1.0" />
+        <PackageReference Include="Mapster" Version="7.3.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
         <PackageReference Include="PropertyChanged.SourceGenerator" Version="1.0.1">

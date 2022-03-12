@@ -30,6 +30,7 @@ public class Bootstrap
             })
             .ConfigureServices(services =>
             {
+                services.AddHostedService<StoreManager>();
                 services.AddMediatR(Assembly.GetExecutingAssembly());
             })
             .ConfigureContainer<ContainerBuilder>(builder => builder.Setup())

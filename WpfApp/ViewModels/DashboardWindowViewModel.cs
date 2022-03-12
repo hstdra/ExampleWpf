@@ -11,7 +11,7 @@ namespace WpfApp.ViewModels;
 
 public partial class DashboardWindowViewModel
 {
-    private readonly Store _store = ServiceLocator.Current.GetInstance<Store>();
+    private readonly ProductStore _productStore = ServiceLocator.Current.GetInstance<ProductStore>();
 
     [Notify] private ICollection<Product>? _products;
 
@@ -19,8 +19,8 @@ public partial class DashboardWindowViewModel
 
     public DashboardWindowViewModel()
     {
-        Products = _store.Products;
+        Products = _productStore.Products;
         
-        _store.OnProductsChanged += products => Products = products;
+        _productStore.OnProductsChanged += products => Products = products;
     }
 }

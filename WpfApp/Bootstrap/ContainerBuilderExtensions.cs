@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Mapster;
 using WpfApp.Commands;
 using WpfApp.Services;
 using WpfApp.Stores;
@@ -20,7 +21,11 @@ public static class ContainerBuilderExtensions
 
     private static ContainerBuilder AddStores(this ContainerBuilder builder)
     {
-        builder.RegisterType<Store>().SingleInstance();
+        var savedRootStore = StoreManager.GetSaveRootStore();
+        var rootStore = new RootStore();
+        var x = savedRootStore.ProductStore.Adapt(new ProductStore(rootStore));
+        builder.Register((_) => rootStore).SingleInstance();
+        builder.Register((_) => x).SingleInstance();
         
         return builder;
     }
