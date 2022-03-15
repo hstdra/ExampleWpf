@@ -23,9 +23,10 @@ public static class ContainerBuilderExtensions
     {
         var savedRootStore = StoreManager.GetSaveRootStore();
         var rootStore = new RootStore();
-        var x = savedRootStore.ProductStore.Adapt(new ProductStore(rootStore));
+        var productStore = savedRootStore.ProductStore is null ? new ProductStore(rootStore) : savedRootStore.ProductStore.Adapt(new ProductStore(rootStore));
+        
         builder.Register((_) => rootStore).SingleInstance();
-        builder.Register((_) => x).SingleInstance();
+        builder.Register((_) => productStore).SingleInstance();
         
         return builder;
     }

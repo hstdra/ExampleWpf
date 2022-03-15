@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using CommonServiceLocator;
+﻿using System.Collections.ObjectModel;
 using WpfApp.Models;
 using WpfGenerator;
 
@@ -12,12 +9,12 @@ public partial class ProductStore
 {
     private ObservableCollection<Product>? _products;
 
-    public ProductStore()
-    {
-    }
+    // Using for serialize/desialize
+    public ProductStore() {}
     
     public ProductStore(RootStore rootStore)
     {
+        OnChanged += (_) => rootStore.OnChanged?.Invoke(rootStore);
         OnProductsChanged += (products) =>
         {
             products!.CollectionChanged += (sender, args) =>
@@ -25,6 +22,5 @@ public partial class ProductStore
                 rootStore.OnChanged?.Invoke(rootStore);
             };
         };
-        OnChanged += (_) => rootStore.OnChanged?.Invoke(rootStore);
     }
 }

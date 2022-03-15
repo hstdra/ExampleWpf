@@ -52,13 +52,13 @@ public class Bootstrap
         {
             var logger = _host.Services.GetRequiredService<ILogger<Bootstrap>>();
             logger.LogCritical("Critical error, shutting down! {Exception}", exception);
+            Console.ReadLine();
             throw;
         }
     }
 
     public async Task StopAsync()
     {
-        Console.ReadLine();
         await _host.StopAsync();
         _host.Dispose();
     }

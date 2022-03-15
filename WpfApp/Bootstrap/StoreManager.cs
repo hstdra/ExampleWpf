@@ -12,7 +12,7 @@ namespace WpfApp.Bootstrap;
 
 public class StoreManager : IHostedService
 {
-    private const string FilePath = @"D:\data.json";
+    private static readonly string FilePath = $"{AppDomain.CurrentDomain.BaseDirectory}/data.json";
 
     private readonly RootStore _rootStore;
 
@@ -28,10 +28,6 @@ public class StoreManager : IHostedService
             try
             {
                 File.WriteAllText(FilePath, JsonSerializer.Serialize(state));
-
-                // fileStream.Flush();
-                // fileStream.Dispose();
-                // stream.Dispose();
             }
             catch (Exception e)
             {
@@ -50,11 +46,9 @@ public class StoreManager : IHostedService
     {
         try
         {
-            var raw = File.ReadAllText(FilePath);
-            var x = JsonSerializer.Deserialize<SerializableRootStore>(raw);
-            return JsonSerializer.Deserialize<SerializableRootStore>(raw) ?? new();
+            return JsonSerializer.Deserialize<SerializableRootStore>(File.ReadAllText(FilePath)) ?? new();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return new();
         }
