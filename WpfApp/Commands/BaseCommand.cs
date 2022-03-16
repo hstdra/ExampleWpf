@@ -7,7 +7,9 @@ namespace WpfApp.Commands
 {
     public abstract class BaseCommand : ICommand, IRequest
     {
-        public event EventHandler? CanExecuteChanged;
+        #pragma warning disable 67
+        public event EventHandler? CanExecuteChanged { add { } remove { } }
+        #pragma warning restore 67
 
         bool ICommand.CanExecute(object? parameter)
         {

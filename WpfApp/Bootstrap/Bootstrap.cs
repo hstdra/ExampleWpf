@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using WpfApp.Views.Windows;
+using WpfApp.Workers;
 
 namespace WpfApp.Bootstrap;
 
@@ -30,7 +31,6 @@ public class Bootstrap
             })
             .ConfigureServices(services =>
             {
-                services.AddHostedService<StoreManager>();
                 services.AddMediatR(Assembly.GetExecutingAssembly());
             })
             .ConfigureContainer<ContainerBuilder>(builder => builder.Setup())

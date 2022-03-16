@@ -12,5 +12,5 @@ public class RootStore
 
 public class SerializableRootStore
 {
-    public ProductStore ProductStore { get; set; }
+    public ProductStore? ProductStore { get; set; }
 }

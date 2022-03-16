@@ -24,7 +24,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\WpfGenerator\WpfGenerator.csproj" OutputItemType="Analyzer" />
+        <ProjectReference Include="..\WpfGenerator\WpfSourceGenerator.csproj" OutputItemType="Analyzer" />
     </ItemGroup>
 
 </Project>

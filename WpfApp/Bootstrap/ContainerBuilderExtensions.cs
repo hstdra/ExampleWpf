@@ -1,10 +1,12 @@
 ﻿using Autofac;
 using Mapster;
+using Microsoft.Extensions.Hosting;
 using WpfApp.Commands;
 using WpfApp.Services;
 using WpfApp.Stores;
 using WpfApp.ViewModels;
 using WpfApp.Views.Windows;
+using WpfApp.Workers;
 
 namespace WpfApp.Bootstrap;
 
@@ -13,6 +15,7 @@ public static class ContainerBuilderExtensions
     public static void Setup(this ContainerBuilder builder)
     {
         builder
+            .AddWorkers()
             .AddStores()
             .AddServices()
             .AddCommands()
@@ -21,7 +24,7 @@ public static class ContainerBuilderExtensions
 
     private static ContainerBuilder AddStores(this ContainerBuilder builder)
     {
-        var savedRootStore = StoreManager.GetSaveRootStore();
+        var savedRootStore = StoreManagerWorker.GetSaveRootStore();
         var rootStore = new RootStore();
         var productStore = savedRootStore.ProductStore is null ? new ProductStore(rootStore) : savedRootStore.ProductStore.Adapt(new ProductStore(rootStore));
         
@@ -48,6 +51,13 @@ public static class ContainerBuilderExtensions
 
     private static ContainerBuilder AddCommands(this ContainerBuilder builder)
     {
+        return builder;
+    }
+
+    private static ContainerBuilder AddWorkers(this ContainerBuilder builder)
+    {
+        builder.RegisterType<StoreManagerWorker>().As<IHostedService>();
+
         return builder;
     }
 }

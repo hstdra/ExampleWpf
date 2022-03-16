@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using WpfApp.Helpers;
 using WpfApp.Models;
 using WpfApp.Stores;
 

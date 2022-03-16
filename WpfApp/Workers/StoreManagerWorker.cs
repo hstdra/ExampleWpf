@@ -8,15 +8,15 @@ using Binaron.Serializer;
 using Microsoft.Extensions.Hosting;
 using WpfApp.Stores;
 
-namespace WpfApp.Bootstrap;
+namespace WpfApp.Workers;
 
-public class StoreManager : IHostedService
+public class StoreManagerWorker : IHostedService
 {
     private static readonly string FilePath = $"{AppDomain.CurrentDomain.BaseDirectory}/data.json";
 
     private readonly RootStore _rootStore;
 
-    public StoreManager(RootStore rootStore)
+    public StoreManagerWorker(RootStore rootStore)
     {
         _rootStore = rootStore;
     }

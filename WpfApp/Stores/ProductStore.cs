@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using WpfApp.Models;
-using WpfGenerator;
+using WpfSourceGenerator;
 
 namespace WpfApp.Stores;
 

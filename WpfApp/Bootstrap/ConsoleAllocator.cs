@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace WpfApp.Bootstrap;
 
+/// <summary>
+/// Only for development purpose
+/// </summary>
 internal static class ConsoleAllocator
 {
     [DllImport(@"kernel32.dll", SetLastError = true)]
